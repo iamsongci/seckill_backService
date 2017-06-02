@@ -3,7 +3,9 @@ package top.softzztiedu.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Commidity {
+import top.softzztiedu.model.base.BaseDO;
+
+public class Commidity extends BaseDO{
 	// 商品ID
 	private Integer id;
 	// 卖家ID

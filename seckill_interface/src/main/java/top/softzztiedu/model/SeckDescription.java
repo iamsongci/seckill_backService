@@ -1,10 +1,13 @@
 package top.softzztiedu.model;
+
+import top.softzztiedu.model.base.BaseDO;
+
 /**
  * 商品描述
  * @author liliang
  *
  */
-public class SeckDescription {
+public class SeckDescription extends BaseDO{
 
 	private Integer commodityId;
 	private String discription;

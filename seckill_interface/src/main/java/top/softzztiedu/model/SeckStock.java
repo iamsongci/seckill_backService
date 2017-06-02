@@ -1,12 +1,14 @@
 package top.softzztiedu.model;
 
+import top.softzztiedu.model.base.BaseDO;
+
 /**
  * 库存表
  * 
  * @author liliang
  *
  */
-public class SeckStock {
+public class SeckStock extends BaseDO{
 
 	private Integer commodityId;
 	private Integer stock;

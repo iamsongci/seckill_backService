@@ -3,13 +3,15 @@ package top.softzztiedu.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import top.softzztiedu.model.base.BaseDO;
+
 /**
  * 订单
  * 
  * @author liliang
  *
  */
-public class Order {
+public class Order extends BaseDO{
 
 	// ID
 	private Integer id;

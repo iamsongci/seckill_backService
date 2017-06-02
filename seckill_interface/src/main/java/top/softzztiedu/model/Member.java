@@ -2,12 +2,14 @@ package top.softzztiedu.model;
 
 import java.math.BigDecimal;
 
+import top.softzztiedu.model.base.BaseDO;
+
 /**
  * 会员信息
  * @author liliang
  *
  */
-public class Member {
+public class Member extends BaseDO{
 	//id
 	private Integer id;
 	//会员名

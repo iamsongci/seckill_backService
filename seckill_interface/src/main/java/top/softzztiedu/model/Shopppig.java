@@ -1,6 +1,8 @@
 package top.softzztiedu.model;
 
-public class Shopppig {
+import top.softzztiedu.model.base.BaseDO;
+
+public class Shopppig extends BaseDO{
 	private Integer id;
 	private Integer sellerId;
 	private Integer buyersId;
