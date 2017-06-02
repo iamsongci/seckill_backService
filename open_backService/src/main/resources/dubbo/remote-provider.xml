@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="top.softzztiedu.service.UserService" ref="UserService" timeout="100000"/>
+    <dubbo:service interface="top.softzztiedu.service.BusinessService" ref="BusinessService" timeout="100000"/>
+    <dubbo:service interface="top.softzztiedu.service.CommodityService" ref="CommodityService" timeout="100000"/>
+    <dubbo:service interface="top.softzztiedu.service.StockService" ref="StockService" timeout="100000"/>
+   
+    
+    
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="UserService" class="top.softzztiedu.service.impl.UserServiceImpl"/>
+    <bean id="BusinessService" class="top.softzztiedu.service.impl.BusinessServiceImpl"/>
+    <bean id="CommodityService" class="top.softzztiedu.service.impl.CommodityServiceImpl"/>
+    <bean id="StockService" class="top.softzztiedu.service.impl.StockServiceImpl"/>
+    
+
+</beans>
