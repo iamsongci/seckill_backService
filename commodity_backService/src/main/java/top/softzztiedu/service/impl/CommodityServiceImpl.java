@@ -117,7 +117,6 @@ public class CommodityServiceImpl implements CommodityService {
 		resultDO.setResult("商品详情商品详情商品详情商品详情商品详情商品详情商品详情");
 		return resultDO;
 	}
-
 	@Override
 	public ResultDO getcommoditySeckill(Integer id) {
 		// TODO Auto-generated method stub
