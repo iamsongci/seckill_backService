@@ -1,8 +1,10 @@
 package top.softzztiedu.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import top.softzztiedu.result.ResultDO;
 import top.softzztiedu.service.StockService;
-
+@Service
 public class StockServiceImpl implements StockService {
 
 	public ResultDO getCommodityStock(Integer id) {

@@ -1,10 +1,12 @@
 package top.softzztiedu.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import top.softzztiedu.exception.ServiceException;
 import top.softzztiedu.model.Member;
 import top.softzztiedu.result.ResultDO;
 import top.softzztiedu.service.UserService;
-
+@Service
 public class UserServiceImpl implements UserService{
 
 	public ResultDO login(String name, String pwd) throws ServiceException {
