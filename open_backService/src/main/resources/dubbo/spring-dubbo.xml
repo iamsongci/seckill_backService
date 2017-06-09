@@ -17,7 +17,9 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181" client="zkclient"/>
 
     <!-- 用dubbo协议在20881端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20881" />
-
-
+    <dubbo:protocol name="dubbo" port="20882" />
+    
+ 
+   
+    
 </beans>
