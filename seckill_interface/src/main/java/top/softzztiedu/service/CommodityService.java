@@ -49,6 +49,13 @@ public interface CommodityService {
 	 * @return
 	 */
 	ResultDO getcommodityInfo(Commidity commidity);
+	/**
+	 * 通过秒杀商品id判断是否到了秒杀时间
+	 * （0：未到，1：已到）
+	 * @param id
+	 * @return
+	 */
+	ResultDO getcommoditySeckill(Integer id);
 	
 
 }

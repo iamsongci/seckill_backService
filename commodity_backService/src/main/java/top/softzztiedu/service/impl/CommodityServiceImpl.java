@@ -118,4 +118,16 @@ public class CommodityServiceImpl implements CommodityService {
 		return resultDO;
 	}
 
+	@Override
+	public ResultDO getcommoditySeckill(Integer id) {
+		// TODO Auto-generated method stub
+		ResultDO resultDO = new ResultDO();
+		// 商品详情
+
+		resultDO.setSuccess(true);
+		resultDO.setMessage("秒杀时间已到");
+		resultDO.setResult("1");
+		return resultDO;
+	}
+
 }
