@@ -3,11 +3,13 @@ package top.softzztiedu.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import top.softzztiedu.exception.ServiceException;
 import top.softzztiedu.model.Commidity;
 import top.softzztiedu.result.ResultDO;
 import top.softzztiedu.service.CommodityService;
-
+@Service
 public class CommodityServiceImpl implements CommodityService {
 
 	public ResultDO countAllCommodity(Boolean type) {

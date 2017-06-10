@@ -5,27 +5,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.topone.entry.Shopping;
-import com.topone.model.ShoppingModel;
+import org.springframework.stereotype.Service;
 
 import top.softzztiedu.exception.ServiceException;
 import top.softzztiedu.model.Order;
 import top.softzztiedu.model.Shopppig;
 import top.softzztiedu.result.ResultDO;
 import top.softzztiedu.service.BusinessService;
-
+@Service
 public class BusinessServiceImpl implements BusinessService {
 
-	@Autowired
-	ShoppingModel shoppingModel;
+//	@Autowired
+//	ShoppingModel shoppingModel;
 	public ResultDO addShoppingCart(Shopppig shopppig) throws ServiceException {
 		// TODO Auto-generated method stub
 		ResultDO resultDO = new ResultDO();
-		Shopping shopping = null;
-		// 加入购物车
-		shoppingModel.add(shopping);
+//		Shopping shopping = null;
+//		// 加入购物车
+//		shoppingModel.add(shopping);
 		if (true) {
 			resultDO.setSuccess(true);
 			resultDO.setMessage("加入购物车成功");
