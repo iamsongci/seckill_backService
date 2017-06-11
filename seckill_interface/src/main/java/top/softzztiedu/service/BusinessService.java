@@ -1,8 +1,7 @@
 package top.softzztiedu.service;
 
 import top.softzztiedu.exception.ServiceException;
-import top.softzztiedu.model.Order;
-import top.softzztiedu.model.Shopppig;
+import com.topone.entry.*;
 import top.softzztiedu.result.ResultDO;
 /**
  * 交易服务
@@ -15,7 +14,7 @@ public interface BusinessService {
 	 * @param shopppig
 	 * @return
 	 */
-	ResultDO addShoppingCart(Shopppig shopppig) throws ServiceException; ;
+	ResultDO addShoppingCart(Shopping shopppig) throws ServiceException; ;
 	/**
 	 * 支付订单(改变订单状态)
 	 * @param id

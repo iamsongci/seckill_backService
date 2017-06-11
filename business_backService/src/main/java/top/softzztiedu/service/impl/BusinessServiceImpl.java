@@ -5,25 +5,29 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.topone.entry.*;
+import com.topone.model.OrderModel;
+import com.topone.model.ShoppingModel;
+
 import top.softzztiedu.exception.ServiceException;
-import top.softzztiedu.model.Order;
-import top.softzztiedu.model.Shopppig;
 import top.softzztiedu.result.ResultDO;
 import top.softzztiedu.service.BusinessService;
 @Service
 public class BusinessServiceImpl implements BusinessService {
 
-//	@Autowired
-//	ShoppingModel shoppingModel;
-	public ResultDO addShoppingCart(Shopppig shopppig) throws ServiceException {
+	@Autowired
+	private ShoppingModel shoppingModel;
+	@Autowired
+	private OrderModel orderModel;
+
+	public ResultDO addShoppingCart(Shopping shopppig) throws ServiceException {
 		// TODO Auto-generated method stub
 		ResultDO resultDO = new ResultDO();
-//		Shopping shopping = null;
-//		// 加入购物车
-//		shoppingModel.add(shopping);
-		if (true) {
+		int add = shoppingModel.add(shopppig);
+		if (add ==1) {
 			resultDO.setSuccess(true);
 			resultDO.setMessage("加入购物车成功");
 		} else {
@@ -37,8 +41,8 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		ResultDO resultDO = new ResultDO();
 		// 改变订单状态
-
-		if (true) {
+		int update = orderModel.update(id, orderStats);
+		if (update==1) {
 			resultDO.setSuccess(true);
 			resultDO.setMessage("改变订单状态成功");
 		} else {
@@ -57,11 +61,9 @@ public class BusinessServiceImpl implements BusinessService {
 		for(int i=0;i<=10;i++){
 			Order order = new Order();
 			order.setId(i);
-			order.setCommodityid(i+i);
 			order.setQuantum(i);
 			order.setBuyersId(i);
 			order.setSellerId(i);
-			order.setCreate_time(new Date());
 			BigDecimal b = new BigDecimal(100.2+i);
 			order.setSum(b);
 			order.setAddess("郑州市中原区"+i);
@@ -83,8 +85,8 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		ResultDO resultDO = new ResultDO();
 		// 生成订单
-
-		if (true) {
+		int add = orderModel.add(order);
+		if (add==1) {
 			resultDO.setSuccess(true);
 			resultDO.setMessage("生成订单成功");
 		} else {
@@ -102,11 +104,9 @@ public class BusinessServiceImpl implements BusinessService {
 		for(int i=0;i<=10;i++){
 			Order order = new Order();
 			order.setId(i);
-			order.setCommodityid(i+i);
 			order.setQuantum(i);
 			order.setBuyersId(i);
 			order.setSellerId(i);
-			order.setCreate_time(new Date());
 			BigDecimal b = new BigDecimal(100.2+i);
 			order.setSum(b);
 			order.setAddess("郑州市中原区"+i);
