@@ -1,12 +1,14 @@
 package top.softzztiedu.result;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author SongCi
  *
  * @param <T>
  */
-public class ResultDO<T> {
+public class ResultDO<T> implements Serializable{
 	private boolean success= false;
 	private String message = null;
 	private T result = null;
