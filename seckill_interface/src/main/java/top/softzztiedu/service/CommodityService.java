@@ -1,7 +1,8 @@
 package top.softzztiedu.service;
 
+import com.topone.entry.Commodity;
+
 import top.softzztiedu.exception.ServiceException;
-import top.softzztiedu.model.Commidity;
 import top.softzztiedu.result.ResultDO;
 /**
  * 商品服务
@@ -42,13 +43,13 @@ public interface CommodityService {
 	 * @param commidity
 	 * @return
 	 */
-	ResultDO addCommodity(Commidity commidity) throws ServiceException;;
+	ResultDO addCommodity(Commodity commodity) throws ServiceException;;
 	/**
 	 * 查看商品详情
 	 * @param commidity
 	 * @return
 	 */
-	ResultDO getcommodityInfo(Commidity commidity);
+	ResultDO getcommodityInfo(Commodity commodity);
 	
 	/**
 	 * 通过秒杀商品id判断是否到了秒杀时间
