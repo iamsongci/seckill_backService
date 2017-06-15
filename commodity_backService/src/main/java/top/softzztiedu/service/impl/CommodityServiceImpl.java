@@ -1,6 +1,7 @@
 package top.softzztiedu.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,12 +129,19 @@ public class CommodityServiceImpl implements CommodityService {
 	@Override
 	public ResultDO getcommoditySeckill(Integer id) {
 		// TODO Auto-generated method stub
+		boolean success=false;
 		ResultDO resultDO = new ResultDO();
 		// 商品详情
-
-		resultDO.setSuccess(true);
+		if(id!=null){
+			Commodity commodity = commodityModel.getById(id);
+			if((commodity.getStarttime()).after(new Date())){
+				success=true;
+			}
+		}
+		resultDO.setSuccess(success);
 		resultDO.setMessage("秒杀时间已到");
 		resultDO.setResult("1");
+		
 		return resultDO;
 	}
 
