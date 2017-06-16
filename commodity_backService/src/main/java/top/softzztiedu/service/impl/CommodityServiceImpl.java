@@ -39,6 +39,7 @@ public class CommodityServiceImpl implements CommodityService {
 
 	public ResultDO getAllCommodityList(Integer start, Integer stop, Boolean type) {
 		// TODO Auto-generated method stub
+		boolean success=false;
 		ResultDO resultDO = new ResultDO();
 		List<Commodity> commidities = new ArrayList<Commodity>();
 		int typeint;
@@ -49,8 +50,12 @@ public class CommodityServiceImpl implements CommodityService {
 			typeint=1;
 			resultDO.setMessage("普通商品");
 		}
-		commidities = commodityModel.getByType(start, stop, typeint);
-		resultDO.setResult(commidities);
+		if(start != null && stop!=null){
+			commidities = commodityModel.getByType(start, stop, typeint);
+			resultDO.setResult(commidities);
+			success = true;
+		}
+		resultDO.setSuccess(success);
 		return resultDO;
 	}
 
@@ -102,28 +107,39 @@ public class CommodityServiceImpl implements CommodityService {
 
 	public ResultDO addCommodity(Commodity commodity) throws ServiceException {
 		// TODO Auto-generated method stub
+		boolean success = false;
 		ResultDO resultDO = new ResultDO();
 		// 商品添加
-		int add = commodityModel.add(commodity);
-		if (add==1) {
-			resultDO.setSuccess(true);
-			resultDO.setMessage("商品添加成功");
-		} else {
-			resultDO.setSuccess(false);
-			resultDO.setMessage("商品添加失败");
+		if(commodity!=null){
+			int add = commodityModel.add(commodity);
+			if (add==1) {
+				resultDO.setMessage("商品添加成功");
+				success= true;
+			} else {
+				resultDO.setMessage("商品添加失败");
+			}
+		}else{
+			resultDO.setMessage("商品为空！！");
 		}
+		resultDO.setSuccess(success);
 		return resultDO;
 	}
 
 	public ResultDO getcommodityInfo(Commodity commodity) {
 		// TODO Auto-generated method stub
+		boolean success = false;
 		ResultDO resultDO = new ResultDO();
 		// 商品详情
-		Description description = 
-				descriptionModel.getById(commodity.getId());
-		resultDO.setSuccess(true);
-		resultDO.setMessage("商品详情获取成功");
-		resultDO.setResult(description);
+		if(commodity!=null && commodity.getId()!=null ){
+			Description description = 
+					descriptionModel.getById(commodity.getId());
+			resultDO.setMessage("商品详情获取成功");
+			resultDO.setResult(description);
+			success = true;
+		}else{
+			resultDO.setMessage("商品id为空");
+		}
+		resultDO.setSuccess(success);
 		return resultDO;
 	}
 	@Override
@@ -136,12 +152,14 @@ public class CommodityServiceImpl implements CommodityService {
 			Commodity commodity = commodityModel.getById(id);
 			if((commodity.getStarttime()).after(new Date())){
 				success=true;
+				resultDO.setMessage("秒杀时间已到");
+			}else{
+				resultDO.setMessage("秒杀时间未到");
 			}
+		}else{
+			resultDO.setMessage("商品id为空");
 		}
 		resultDO.setSuccess(success);
-		resultDO.setMessage("秒杀时间已到");
-		resultDO.setResult("1");
-		
 		return resultDO;
 	}
 
