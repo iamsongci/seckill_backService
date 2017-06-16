@@ -16,12 +16,18 @@ public class StockServiceImpl implements StockService {
 	
 	public ResultDO getCommodityStock(Integer id) {
 		// TODO Auto-generated method stub
+		boolean success = false;
 		ResultDO resultDO = new ResultDO();
-		// 获取商品库存
-		Stock stock =stockModel.getById(id);
-		resultDO.setSuccess(true);
-		resultDO.setMessage("获取商品库存成功");
-		resultDO.setResult(stock);
+		if(id!=null){
+			// 获取商品库存
+			Stock stock =stockModel.getById(id);
+			resultDO.setMessage("获取商品库存成功");
+			resultDO.setResult(stock);
+			success=true;
+		}else{
+			resultDO.setMessage("传入id为空");
+		}
+		resultDO.setSuccess(success);
 		return resultDO;
 	}
 
