@@ -17,32 +17,42 @@ public class UserServiceImpl implements UserService{
 	
 	public ResultDO login(String name, String pwd) throws ServiceException {
 		// TODO Auto-generated method stub
+		boolean success = false;
 		ResultDO resultDO = new ResultDO();
-		int login = memberModel.login(name, pwd);
-		if(login!=0){
-			resultDO.setSuccess(true);
-			resultDO.setMessage("登陆成功");//登陆成功
-			Member member = memberModel.getById(name);
-			resultDO.setResult(member);//登陆成功带有用户对象
+		if(name!=null && !name.equals("")&&pwd!=null&& !pwd.equals("")){
+			int login = memberModel.login(name, pwd);
+			if(login!=0){
+				resultDO.setMessage("登陆成功");//登陆成功
+				Member member = memberModel.getById(name);
+				resultDO.setResult(member);//登陆成功带有用户对象
+				success=true;
+			}else{
+				resultDO.setMessage("登陆失败");//登陆失败
+			}
 		}else{
-			resultDO.setSuccess(false);
-			resultDO.setMessage("登陆失败");//登陆失败
+			resultDO.setMessage("用户名或密码为空");
 		}
+		resultDO.setSuccess(success);
 		return resultDO;
 	}
 
 	public ResultDO register(Object object) throws ServiceException {
 		// TODO Auto-generated method stub
-		Member member = (Member) object;
+		boolean success = false;
 		ResultDO resultDO = new ResultDO();
-		int add = memberModel.add(member);
-		if(add==1){
-			resultDO.setSuccess(true);
-			resultDO.setMessage("注册成功");//成功
+		if(object!=null){
+			Member member = (Member) object;
+			int add = memberModel.add(member);
+			if(add==1){
+				resultDO.setMessage("注册成功");//成功
+				success = true;
+			}else{
+				resultDO.setMessage("注册失败");//失败
+			}
 		}else{
-			resultDO.setSuccess(false);
-			resultDO.setMessage("注册失败");//失败
+			resultDO.setMessage("传入空值对象！！");
 		}
+		resultDO.setSuccess(success);
 		return resultDO;
 	}
 
