@@ -33,11 +33,17 @@ public interface CommodityService {
 	 */
 	ResultDO getMyStoreList(Integer id);
 	/**
-	 * 得到我的购物车商品列表
+	 * 得到我的购物车列表
 	 * @param id
 	 * @return
 	 */
 	ResultDO getMyShoppingCartList(Integer id);
+	/**
+	 * 通过商品id获取商品信息
+	 * @param Commoditybyid
+	 * @return
+	 */
+	ResultDO getMyShoppingCommoditybyid(Integer Commoditybyid);
 	/**
 	 * 商品添加
 	 * @param commidity

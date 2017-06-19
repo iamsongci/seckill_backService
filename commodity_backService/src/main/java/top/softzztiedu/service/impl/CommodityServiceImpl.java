@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.topone.entry.Commodity;
 import com.topone.entry.Description;
+import com.topone.entry.Shopping;
 import com.topone.model.CommodityModel;
 import com.topone.model.DescriptionModel;
+import com.topone.model.ShoppingModel;
 
 import top.softzztiedu.exception.ServiceException;
 import top.softzztiedu.result.ResultDO;
@@ -23,7 +25,9 @@ public class CommodityServiceImpl implements CommodityService {
 	private CommodityModel commodityModel;
 	@Autowired
 	private DescriptionModel descriptionModel;
-
+	@Autowired
+	private ShoppingModel shoppingModel;
+	
 	public ResultDO countAllCommodity(Boolean type) {
 		// TODO Auto-generated method stub
 		ResultDO resultDO = new ResultDO();
@@ -81,24 +85,20 @@ public class CommodityServiceImpl implements CommodityService {
 
 	public ResultDO getMyShoppingCartList(Integer id) {
 		// TODO Auto-generated method stub
+		boolean success = false;
 		ResultDO resultDO = new ResultDO();
-		List<Commodity> commidities = new ArrayList<Commodity>();
-		for (int i = 0; i <= 10; i++) {
-			Commodity Commodity = new Commodity();
-			Commodity.setId(i);
-			Commodity.setSellerId(i);
-			Commodity.setName("测试商品" + i);
-
-			commidities.add(Commodity);
+		if(id!=null){
+			List<Shopping> shoppings = shoppingModel.getByBuy(id);
+			resultDO.setMessage("我的购物车列表为空");
+			if(shoppings.size()>0){
+				resultDO.setMessage("得我的购物车列表");
+				resultDO.setResult(shoppings);
+				success=true;
+			}
+		}else{
+			resultDO.setMessage("传入空值！！");
 		}
-		if (true) {
-			resultDO.setSuccess(true);
-			resultDO.setMessage("得到我的购物车商品列表");
-			resultDO.setResult(commidities);
-		} else {
-			resultDO.setSuccess(false);
-			resultDO.setMessage("未得到我的购物车商品列表");
-		}
+		resultDO.setSuccess(success);
 		return resultDO;
 	}
 
@@ -152,6 +152,26 @@ public class CommodityServiceImpl implements CommodityService {
 				resultDO.setMessage("秒杀时间已到");
 			} else {
 				resultDO.setMessage("秒杀时间未到");
+			}
+		} else {
+			resultDO.setMessage("商品id为空");
+		}
+		resultDO.setSuccess(success);
+		return resultDO;
+	}
+
+	@Override
+	public ResultDO getMyShoppingCommoditybyid(Integer Commoditybyid) {
+		// TODO Auto-generated method stub
+		boolean success = false;
+		ResultDO resultDO = new ResultDO();
+		if (Commoditybyid != null) {
+			Commodity commodity = commodityModel.getById(Commoditybyid);
+			if (commodity!=null) {
+				success = true;
+				resultDO.setMessage("得到商品");
+			} else {
+				resultDO.setMessage("得到商品为空");
 			}
 		} else {
 			resultDO.setMessage("商品id为空");
