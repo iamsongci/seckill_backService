@@ -139,7 +139,6 @@ public class CommodityServiceImpl implements CommodityService {
 		return resultDO;
 	}
 
-	@Override
 	public ResultDO getcommoditySeckill(Integer id) {
 		// TODO Auto-generated method stub
 		boolean success = false;
@@ -160,7 +159,6 @@ public class CommodityServiceImpl implements CommodityService {
 		return resultDO;
 	}
 
-	@Override
 	public ResultDO getMyShoppingCommoditybyid(Integer Commoditybyid) {
 		// TODO Auto-generated method stub
 		boolean success = false;

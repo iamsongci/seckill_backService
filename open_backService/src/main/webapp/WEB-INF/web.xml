@@ -4,6 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:*.xml
+		</param-value>
+	</context-param>
   <servlet>
   	<servlet-name>openService</servlet-name>
   	<display-name>openService</display-name>

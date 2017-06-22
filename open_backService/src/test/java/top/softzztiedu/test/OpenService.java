@@ -8,7 +8,7 @@ public class OpenService {
 	
 	public static void main(String[] args) throws IOException {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
-				"classpath*:dubbo/remote-provider.xml","classpath*:dubbo/spring-dubbo.xml"});  
+				"classpath*:remote-provider.xml","classpath*:spring-consumer.xml"});  
         context.start();  
         System.out.println("start-service");
         System.in.read();

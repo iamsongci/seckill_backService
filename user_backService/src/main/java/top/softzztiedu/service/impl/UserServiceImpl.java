@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
 		boolean success = false;
 		ResultDO resultDO = new ResultDO();
 		if(name!=null && !name.equals("")&&pwd!=null&& !pwd.equals("")){
-			int login = memberModel.login(name, pwd);
+			Integer login = memberModel.login(name, pwd);
 			if(login!=0){
 				resultDO.setMessage("登陆成功");//登陆成功
 				Member member = memberModel.getById(name);

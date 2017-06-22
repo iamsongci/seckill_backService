@@ -21,5 +21,19 @@
     <bean id="CommodityService" class="top.softzztiedu.service.impl.CommodityServiceImpl"/>
     <bean id="StockService" class="top.softzztiedu.service.impl.StockServiceImpl"/>
     
+    
+    
+    
+     <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="backService_provider"  />
+ 
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" client="zkclient"/>
+ 
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20882" />
+ 
 
+    
+    
 </beans>
