@@ -30,7 +30,7 @@ public class openService extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {
-				"classpath*:remote-provider.xml","classpath*:spring-consumer.xml"});  
+				"classpath*:spring-consumer.xml","classpath*:remote-provider.xml"});  
         context.start();  
         System.out.println("start-Allservice");
         response.setContentType("test/html;charset=UTF-8");
