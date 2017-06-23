@@ -94,6 +94,7 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		UUID uuid  =  UUID.randomUUID(); 
 		String s = UUID.randomUUID().toString();
+		System.out.println(s);
 		order.setId(s);
 		int result_code = 1;
 		BigDecimal total_price =null;
@@ -103,7 +104,7 @@ public class BusinessServiceImpl implements BusinessService {
 		if(order!=null &&order.getCommodityId()!=null&&order.getQuantum()!=null){
 			Stock stock = stockModel.getById(order.getCommodityId());
 			Commodity commodity = commodityModel.getById(order.getCommodityId());
-			
+			order.setSellerId(commodity.getSellerId());
 			if((stock.getStock()-order.getQuantum())>0){
 				stockModel.buyCommodity(order.getCommodityId(),order.getQuantum());
 				int add = orderModel.add(order);
