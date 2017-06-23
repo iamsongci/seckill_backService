@@ -4,13 +4,17 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.topone.entry.*;
+import com.topone.model.CommodityModel;
+import com.topone.model.DescriptionModel;
 import com.topone.model.OrderModel;
 import com.topone.model.ShoppingModel;
+import com.topone.model.StockModel;
 
 import top.softzztiedu.exception.ServiceException;
 import top.softzztiedu.result.ResultDO;
@@ -22,6 +26,10 @@ public class BusinessServiceImpl implements BusinessService {
 	private ShoppingModel shoppingModel;
 	@Autowired
 	private OrderModel orderModel;
+	@Autowired
+	private StockModel stockModel;
+	@Autowired
+	private CommodityModel commodityModel;
 
 	public ResultDO addShoppingCart(Shopping shopppig) throws ServiceException {
 		// TODO Auto-generated method stub
@@ -84,19 +92,46 @@ public class BusinessServiceImpl implements BusinessService {
 
 	public ResultDO addOrder(Order order) throws ServiceException {
 		// TODO Auto-generated method stub
+		UUID uuid  =  UUID.randomUUID(); 
+		String s = UUID.randomUUID().toString();
+		order.setId(s);
+		int result_code = 1;
+		BigDecimal total_price =null;
 		boolean success = false;
 		ResultDO resultDO = new ResultDO();
 		// 生成订单
-		if(order!=null){
-			int add = orderModel.add(order);
-			if (add==1) {
-				resultDO.setMessage("生成订单成功");
-			} else {
-				resultDO.setMessage("生成订单失败");
+		if(order!=null &&order.getCommodityId()!=null&&order.getQuantum()!=null){
+			Stock stock = stockModel.getById(order.getCommodityId());
+			Commodity commodity = commodityModel.getById(order.getCommodityId());
+			
+			if((stock.getStock()-order.getQuantum())>0){
+				stockModel.buyCommodity(order.getCommodityId(),order.getQuantum());
+				int add = orderModel.add(order);
+				if (add==1) {
+					resultDO.setMessage("生成订单成功");
+					result_code=0;	
+					total_price=
+							commodity.getPostage().add(commodity.getPrice()
+									.multiply(new BigDecimal(order.getQuantum())));
+				} else {
+					resultDO.setMessage("生成订单失败");
+				}
+			}else{
+				result_code=10;	
+				resultDO.setMessage("库存不足");
 			}
 		}else{
 			resultDO.setMessage("传入空值！！");
+			
 		}
+		String json = 
+				"{'result': {'result_code': "+result_code
+				+",'buyer_id': "+order.getBuyersId()
+				+",'item_id': "+order.getCommodityId()
+				+",'item_sku_id': "+order.getId()
+				+",'total_price': "+total_price.toString()
+				+"}";
+		resultDO.setResult(json);
 		resultDO.setSuccess(success);
 		return resultDO;
 	}
