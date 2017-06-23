@@ -1,26 +1,26 @@
-//package top.softzztiedu.test;
-//
-//import java.math.BigDecimal;
-//
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.test.context.ContextConfiguration;
-//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-//
-//import com.topone.entry.Member;
-//import com.topone.model.MemberModel;
-//
-//import top.softzztiedu.exception.ServiceException;
-//import top.softzztiedu.service.UserService;
-//
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations={"classpath:spring-consumer.xml","classpath:remote-provider.xml"})
-//public class UserServiceTest {
-//	@Autowired
-//	private MemberModel memberModel;
-//	@Autowired
-//	private UserService userService;
+package top.softzztiedu.test;
+
+import java.math.BigDecimal;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.topone.entry.Member;
+import com.topone.model.MemberModel;
+
+import top.softzztiedu.exception.ServiceException;
+import top.softzztiedu.service.UserService;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:spring-consumer.xml","classpath:remote-provider.xml"})
+public class UserServiceTest {
+	@Autowired
+	private MemberModel memberModel;
+	@Autowired
+	private UserService userService;
 //    @Test
 //	public void addUser(){
 //    	
@@ -32,14 +32,14 @@
 //    	member.setStatus(1);
 //    	System.out.println(memberModel.add(member));
 //	}
-//    @Test
-//    public void loginTest(){
-//    	try {
-//    		System.out.println(userService.login("xiaolong", "123456"));
-//		} catch (ServiceException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//    	System.out.println("test_end");
-//    }
-//}
+    @Test
+    public void loginTest(){
+    	try {
+    		System.out.println(userService.login("xiaolong", "123456"));
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	System.out.println("test_end");
+    }
+}
